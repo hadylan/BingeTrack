@@ -29,13 +29,15 @@ const showBurgerMenu = ref(false)
   <div v-if="showBurgerMenu" class="w-full pt-3" id="navbar-hamburger">
     <ul class="flex flex-col px-3 text-white font-light">
       <li>
-        <a href="#" class="block py-2 border-b-1 border-gray-500" aria-current="page">Accueil</a>
+        <RouterLink to="/" class="block py-2 border-b-1 border-gray-500" aria-current="page"
+          >Accueil</RouterLink
+        >
       </li>
       <li>
-        <a href="#" class="block py-2 border-b-1 border-gray-500">Films</a>
+        <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
       </li>
       <li>
-        <a href="#" class="block py-2 border-b-1 border-gray-500">Profil</a>
+        <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
       </li>
     </ul>
   </div>
