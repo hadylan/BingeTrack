@@ -41,13 +41,8 @@ const isMobile = useMediaQuery('(max-width: 768px)')
 <style scoped>
 h1 {
   font-family: 'Playfair Display';
-}
-
-@media screen and (max-width: 768px) {
-  h1 {
-    position: absolute;
-    transform: translateX(-50%);
-    left: 50%;
-  }
+  position: absolute;
+  transform: translateX(-50%);
+  left: 50%;
 }
 </style>
