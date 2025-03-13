@@ -1,5 +1,8 @@
 <script setup>
 import { ref } from 'vue'
+import { useAuthStore } from '@/stores/authStore'
+
+const authStore = useAuthStore()
 const showBurgerMenu = ref(false)
 </script>
 
@@ -37,7 +40,9 @@ const showBurgerMenu = ref(false)
         <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
       </li>
       <li>
-        <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
+        <span @click="authStore.toggleAuthModal" class="block py-2 border-b-1 border-gray-500"
+          >S'identifier</span
+        >
       </li>
     </ul>
   </div>
