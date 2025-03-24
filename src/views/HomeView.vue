@@ -1,5 +1,11 @@
-<script setup></script>
+<script setup>
+import PopularMovies from '@/components/PopularMovies.vue'
+</script>
 
 <template>
-  <main></main>
+  <main>
+    <PopularMovies />
+  </main>
 </template>
+
+<style></style>
