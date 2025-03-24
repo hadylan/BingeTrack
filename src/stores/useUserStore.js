@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { getUserMovies } from '@/services/tmdbService'
 import getHoursDiffWithNow from '@/services/utils'
+import apiClient from '@/services/apiClient'
 
 export const useUserStore = defineStore('user', {
   state: () => ({
@@ -41,6 +41,19 @@ export const useUserStore = defineStore('user', {
       }
     },
 
+    async getUserMovies(listName, page) {
+      try {
+        const res = await apiClient.get(`/account/${this.user.id}/${listName}/movies`, {
+          params: { page: page, sort_by: 'created_at.desc' },
+        })
+
+        return res.data
+      } catch (error) {
+        console.error("Erreur lors de la récupération des films de l'utilisateur :", error)
+        return []
+      }
+    },
+
     async isMoviesListValid(listName, cachedList) {
       const cachedLastUpdate = cachedList.lastUpdate
 
@@ -48,7 +61,7 @@ export const useUserStore = defineStore('user', {
         return false
       }
 
-      const freshFirstPage = await getUserMovies(this.user.id, listName, 1)
+      const freshFirstPage = await this.getUserMovies(listName, 1)
 
       return (
         freshFirstPage.total_results === cachedList.movies.length &&
@@ -62,7 +75,7 @@ export const useUserStore = defineStore('user', {
       let totalPages = 1
 
       while (page <= totalPages) {
-        const freshFirstPage = await getUserMovies(this.user.id, listName, page)
+        const freshFirstPage = await this.getUserMovies(listName, page)
 
         if (page === 1) {
           totalPages = freshFirstPage.total_pages
