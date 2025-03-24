@@ -42,7 +42,7 @@ const showBurgerMenu = ref(false)
         >
       </li>
       <li>
-        <RouterLink to="/profil" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
+        <RouterLink to="/profile" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
       </li>
       <li>
         <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
