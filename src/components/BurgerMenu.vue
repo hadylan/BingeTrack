@@ -1,8 +1,13 @@
 <script setup>
 import { ref } from 'vue'
-import { useAuthStore } from '@/stores/authStore'
+import { useUIStore } from '@/stores/useUIStore'
+import { useUserStore } from '@/stores/useUserStore'
+import { storeToRefs } from 'pinia'
 
-const authStore = useAuthStore()
+const uiStore = useUIStore()
+const userStore = useUserStore()
+
+const { user } = storeToRefs(userStore)
 const showBurgerMenu = ref(false)
 </script>
 
@@ -37,10 +42,13 @@ const showBurgerMenu = ref(false)
         >
       </li>
       <li>
-        <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
+        <RouterLink to="/profil" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
       </li>
       <li>
-        <span @click="authStore.toggleAuthModal" class="block py-2 border-b-1 border-gray-500"
+        <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
+      </li>
+      <li v-if="user.id === null">
+        <span @click="uiStore.openAuthModal()" class="block py-2 border-b-1 border-gray-500"
           >S'identifier</span
         >
       </li>
