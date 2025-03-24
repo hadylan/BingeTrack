@@ -8,7 +8,7 @@ let popularMovies = ref([])
 onMounted(async () => {
   const movieStore = useMoviesStore()
   await movieStore.getPopularThisWeek()
-  popularMovies.value = movieStore.moviesLists.popularThisWeek.movies
+  popularMovies.value = movieStore.movieLists.popularThisWeek.movies
 })
 </script>
 

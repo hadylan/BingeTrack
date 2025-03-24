@@ -8,7 +8,7 @@ export const useUserStore = defineStore('user', {
       id: null,
       username: null,
       session_id: null,
-      moviesLists: {
+      movieLists: {
         favorite: {
           id: 0,
           title: 'Films favoris',
@@ -30,13 +30,13 @@ export const useUserStore = defineStore('user', {
 
   actions: {
     async retrieveMoviesLists() {
-      for (const listName of Object.keys(this.user.moviesLists)) {
+      for (const listName of Object.keys(this.user.movieLists)) {
         const cachedList = JSON.parse(localStorage.getItem(listName))
 
         if (!cachedList || !(await this.isMoviesListValid(listName, cachedList))) {
           this.getFreshMoviesList(listName)
         } else {
-          this.user.moviesLists[listName] = cachedList
+          this.user.movieLists[listName] = cachedList
         }
       }
     },
@@ -85,9 +85,9 @@ export const useUserStore = defineStore('user', {
         page++
       }
 
-      this.user.moviesLists[listName].lastUpdate = Date.now()
-      this.user.moviesLists[listName].movies = allMovies
-      localStorage.setItem(`${listName}`, JSON.stringify(this.user.moviesLists[listName]))
+      this.user.movieLists[listName].lastUpdate = Date.now()
+      this.user.movieLists[listName].movies = allMovies
+      localStorage.setItem(`${listName}`, JSON.stringify(this.user.movieLists[listName]))
     },
 
     async isSameFirstPageMovies(freshFirstPage, cachedFirstPage) {

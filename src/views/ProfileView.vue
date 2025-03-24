@@ -24,9 +24,9 @@ const { user } = storeToRefs(userStore)
       </button>
     </div>
 
-    <div class="moviesLists">
+    <div class="movieLists">
       <UserMoviesList
-        v-for="moviesList in user.moviesLists"
+        v-for="moviesList in user.movieLists"
         :key="moviesList.id"
         :movies="moviesList.movies"
         :listTitle="moviesList.title"

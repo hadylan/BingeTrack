@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 
 export const useMoviesStore = defineStore('movies', {
   state: () => ({
-    moviesLists: {
+    movieLists: {
       popularThisWeek: {
         id: 0,
         title: 'Populaire cette semaine',
@@ -45,15 +45,15 @@ export const useMoviesStore = defineStore('movies', {
       if (!cachedMovies || getHoursDiffWithNow(cachedMovies.lastUpdate) >= 3) {
         try {
           const res = await apiClient.get('/movie/popular')
-          this.moviesLists.popularThisWeek.lastUpdate = Date.now()
-          this.moviesLists.popularThisWeek.movies = res.data.results
-          localStorage.setItem('popularTw', JSON.stringify(this.moviesLists.popularThisWeek))
+          this.movieLists.popularThisWeek.lastUpdate = Date.now()
+          this.movieLists.popularThisWeek.movies = res.data.results
+          localStorage.setItem('popularTw', JSON.stringify(this.movieLists.popularThisWeek))
         } catch (error) {
           console.error('Erreur lors de la récupération des films populaires :', error)
         }
       } else {
-        this.moviesLists.popularThisWeek.movies = cachedMovies.movies
-        this.moviesLists.popularThisWeek.lastUpdate = cachedMovies.lastUpdate
+        this.movieLists.popularThisWeek.movies = cachedMovies.movies
+        this.movieLists.popularThisWeek.lastUpdate = cachedMovies.lastUpdate
       }
     },
   },
