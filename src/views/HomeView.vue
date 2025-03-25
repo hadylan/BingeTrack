@@ -5,12 +5,12 @@ import MovieList from '@/components/MovieList.vue'
 
 onMounted(async () => {})
 const moviesStore = useMoviesStore()
-const movieList = moviesStore.movieLists.popularThisWeek
+const popularMovieList = moviesStore.movieLists.popular
 </script>
 
 <template>
   <main>
-    <MovieList :movies="movieList.movies" :listTitle="movieList.title" />
+    <MovieList :movies="popularMovieList.movies" :listTitle="popularMovieList.title" />
   </main>
 </template>
 

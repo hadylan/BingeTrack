@@ -5,32 +5,30 @@ import { defineStore } from 'pinia'
 export const useMoviesStore = defineStore('movies', {
   state: () => ({
     movieLists: {
-      popularThisWeek: {
+      popular: {
         id: 0,
+        apiPath: 'popular',
         title: 'Populaire cette semaine',
         lastUpdate: null,
         movies: [],
       },
-      outNow: {
+      nowPlaying: {
         id: 1,
+        apiPath: 'now_playing',
         title: 'Actuellement au cinéma',
         lastUpdate: null,
         movies: [],
       },
-      mostPopular: {
+      topRated: {
         id: 2,
-        title: 'Les plus populaires',
-        lastUpdate: null,
-        movies: [],
-      },
-      highestRated: {
-        id: 3,
+        apiPath: 'top_rated',
         title: 'Les mieux notés',
         lastUpdate: null,
         movies: [],
       },
-      upcomingReleases: {
-        id: 4,
+      upcoming: {
+        id: 3,
+        apiPath: 'upcomping',
         title: 'Prochainement disponibles',
         lastUpdate: null,
         movies: [],
@@ -39,21 +37,27 @@ export const useMoviesStore = defineStore('movies', {
   }),
 
   actions: {
-    async getPopularThisWeek() {
-      const cachedMovies = JSON.parse(localStorage.getItem('popularTw'))
+    async getMovieList(list) {
+      const listKey = Object.keys(this.movieLists).find(
+        (key) => this.movieLists[key].id === list.id,
+      )
+      const cachedMovies = JSON.parse(localStorage.getItem(list.apiPath))
 
       if (!cachedMovies || getHoursDiffWithNow(cachedMovies.lastUpdate) >= 3) {
         try {
-          const res = await apiClient.get('/movie/popular')
-          this.movieLists.popularThisWeek.lastUpdate = Date.now()
-          this.movieLists.popularThisWeek.movies = res.data.results
-          localStorage.setItem('popularTw', JSON.stringify(this.movieLists.popularThisWeek))
+          const res = await apiClient.get(`/movie/${list.apiPath}`)
+          this.movieLists[listKey].lastUpdate = Date.now()
+          this.movieLists[listKey].movies = res.data.results
+          localStorage.setItem(list.apiPath, JSON.stringify(this.movieLists[listKey]))
         } catch (error) {
-          console.error('Erreur lors de la récupération des films populaires :', error)
+          console.error(
+            `Erreur lors de la récupération des films de la liste : ${list.title}`,
+            error,
+          )
         }
       } else {
-        this.movieLists.popularThisWeek.movies = cachedMovies.movies
-        this.movieLists.popularThisWeek.lastUpdate = cachedMovies.lastUpdate
+        this.movieLists[listKey].movies = cachedMovies.movies
+        this.movieLists[listKey].lastUpdate = cachedMovies.lastUpdate
       }
     },
   },
