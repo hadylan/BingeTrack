@@ -2,7 +2,7 @@
 import { useUserStore } from '@/stores/useUserStore'
 import { useAuthStore } from '@/stores/useAuthStore'
 import { storeToRefs } from 'pinia'
-import UserMoviesList from '@/components/UserMoviesList.vue'
+import UserMovieList from '@/components/UserMovieList.vue'
 
 const authStore = useAuthStore()
 const userStore = useUserStore()
@@ -25,7 +25,7 @@ const { user } = storeToRefs(userStore)
     </div>
 
     <div class="movieLists">
-      <UserMoviesList
+      <UserMovieList
         v-for="moviesList in user.movieLists"
         :key="moviesList.id"
         :movies="moviesList.movies"

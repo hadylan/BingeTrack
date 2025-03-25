@@ -21,7 +21,7 @@ useInfiniteScroll(el, loadMoreMovies, {
 
 <template>
   <div class="wrapper px-5 pt-5 pb-7 rounded-xl">
-    <h4>{{ props.listTitle }}</h4>
+    <h2>{{ props.listTitle }}</h2>
     <div
       id="movies_list_container"
       class="overflow-scroll overflow-x-hidden pr-4 mt-4 rounded-xl"
