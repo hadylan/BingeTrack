@@ -1,10 +1,16 @@
 <script setup>
-import PopularMovies from '@/components/PopularMovies.vue'
+import { onMounted } from 'vue'
+import { useMoviesStore } from '@/stores/useMoviesStore'
+import MovieList from '@/components/MovieList.vue'
+
+onMounted(async () => {})
+const moviesStore = useMoviesStore()
+const movieList = moviesStore.movieLists.popularThisWeek
 </script>
 
 <template>
   <main>
-    <PopularMovies />
+    <MovieList :movies="movieList.movies" :listTitle="movieList.title" />
   </main>
 </template>
 
