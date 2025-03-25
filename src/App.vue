@@ -4,13 +4,17 @@ import HeaderBar from './components/HeaderBar.vue'
 import { onMounted } from 'vue'
 import { useAuthStore } from './stores/useAuthStore'
 import { useUserStore } from './stores/useUserStore'
+import { useMoviesStore } from './stores/useMoviesStore'
 
 onMounted(async () => {
   const authStore = useAuthStore()
-  const userStore = useUserStore()
-
   await authStore.checkUserSession()
+
+  const userStore = useUserStore()
   await userStore.retrieveMoviesLists()
+
+  const movieStore = useMoviesStore()
+  await movieStore.getPopularThisWeek()
 })
 </script>
 
