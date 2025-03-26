@@ -1,5 +1,10 @@
-const getHoursDiffWithNow = (dateTime) => {
+function getHoursDiffWithNow(dateTime) {
   return (Date.now() - dateTime) / (1000 * 60 * 60)
 }
 
-export default getHoursDiffWithNow
+function stripHtml(html) {
+  const doc = new DOMParser().parseFromString(html, 'text/html')
+  return doc.body.textContent || ''
+}
+
+export { getHoursDiffWithNow, stripHtml }

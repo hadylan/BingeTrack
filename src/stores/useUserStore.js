@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import getHoursDiffWithNow from '@/services/utils'
+import { getHoursDiffWithNow } from '@/services/utils'
 import apiClient from '@/services/apiClient'
 
 export const useUserStore = defineStore('user', {
