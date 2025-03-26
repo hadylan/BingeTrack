@@ -6,7 +6,7 @@ const props = defineProps(['movies', 'listTitle'])
 </script>
 
 <template>
-  <div id="popular_movies" class="rounded-xl px-5 pt-4 pb-5">
+  <div class="movie_list rounded-xl px-5 pt-4 pb-5">
     <h2>{{ props.listTitle }}</h2>
     <ul class="grid grid-cols-10 gap-3 mt-4">
       <MovieCard v-for="movie in props.movies" :key="movie.id" :movie="movie" />
@@ -15,7 +15,7 @@ const props = defineProps(['movies', 'listTitle'])
 </template>
 
 <style scoped>
-#popular_movies {
+.movie_list {
   background-color: #202020;
 }
 </style>
