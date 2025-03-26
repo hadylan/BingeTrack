@@ -23,8 +23,7 @@ useInfiniteScroll(el, loadMoreMovies, {
   <div class="wrapper px-5 pt-5 pb-7 rounded-xl">
     <h2>{{ props.listTitle }}</h2>
     <div
-      id="movies_list_container"
-      class="overflow-scroll overflow-x-hidden pr-4 mt-4 rounded-xl"
+      class="movies_list_container overflow-scroll overflow-x-hidden pr-4 mt-4 rounded-xl"
       ref="el"
     >
       <ul class="grid grid-cols-10 gap-3 my-1">
@@ -39,8 +38,8 @@ useInfiniteScroll(el, loadMoreMovies, {
   background-color: #202020;
 }
 
-#movies_list_container {
-  height: 50vh;
+.movies_list_container {
+  max-height: 50vh;
 }
 
 ::-webkit-scrollbar {
