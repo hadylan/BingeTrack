@@ -5,30 +5,30 @@ import { defineStore } from 'pinia'
 export const useMoviesStore = defineStore('movies', {
   state: () => ({
     movieLists: {
-      popular: {
+      trending: {
         id: 0,
-        apiPath: 'popular',
-        title: 'Populaire cette semaine',
+        apiPath: 'trending/movie/week',
+        title: 'Tendance cette semaine',
         lastUpdate: null,
         movies: [],
       },
       nowPlaying: {
         id: 1,
-        apiPath: 'now_playing',
+        apiPath: '/movie/now_playing',
         title: 'Actuellement au cinéma',
         lastUpdate: null,
         movies: [],
       },
       topRated: {
         id: 2,
-        apiPath: 'top_rated',
+        apiPath: '/movie/top_rated',
         title: 'Les mieux notés',
         lastUpdate: null,
         movies: [],
       },
       upcoming: {
         id: 3,
-        apiPath: 'upcomping',
+        apiPath: '/movie/upcomping',
         title: 'Prochainement disponibles',
         lastUpdate: null,
         movies: [],
@@ -37,15 +37,15 @@ export const useMoviesStore = defineStore('movies', {
   }),
 
   actions: {
-    async getMovieList(list) {
+    async fetchMovieList(list) {
       const listKey = Object.keys(this.movieLists).find(
         (key) => this.movieLists[key].id === list.id,
       )
       const cachedMovies = JSON.parse(localStorage.getItem(list.apiPath))
 
-      if (!cachedMovies || getHoursDiffWithNow(cachedMovies.lastUpdate) >= 3) {
+      if (!cachedMovies || getHoursDiffWithNow(cachedMovies.lastUpdate) >= 24) {
         try {
-          const res = await apiClient.get(`/movie/${list.apiPath}`)
+          const res = await apiClient.get(`${list.apiPath}`)
           this.movieLists[listKey].lastUpdate = Date.now()
           this.movieLists[listKey].movies = res.data.results
           localStorage.setItem(list.apiPath, JSON.stringify(this.movieLists[listKey]))

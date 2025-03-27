@@ -14,7 +14,7 @@ onMounted(async () => {
   await userStore.retrieveMoviesLists()
 
   const movieStore = useMoviesStore()
-  await movieStore.getMovieList(movieStore.movieLists.popular)
+  await movieStore.fetchMovieList(movieStore.movieLists.trending)
 })
 </script>
 
