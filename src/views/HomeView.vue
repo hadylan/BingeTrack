@@ -1,16 +1,21 @@
 <script setup>
-import { onMounted } from 'vue'
+import { computed } from 'vue'
 import { useMoviesStore } from '@/stores/useMoviesStore'
 import MovieList from '@/components/MovieList.vue'
+import TrendingReviews from '@/components/TrendingReviews.vue'
 
-onMounted(async () => {})
 const moviesStore = useMoviesStore()
-const popularMovieList = moviesStore.movieLists.popular
+const trendingMovieList = computed(() => moviesStore.movieLists.trending)
 </script>
 
 <template>
   <main>
-    <MovieList :movies="popularMovieList.movies" :listTitle="popularMovieList.title" />
+    <MovieList
+      :movies="trendingMovieList.movies"
+      :listTitle="trendingMovieList.title"
+      class="mb-5"
+    />
+    <TrendingReviews />
   </main>
 </template>
 

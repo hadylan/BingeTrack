@@ -5,6 +5,7 @@ import { onMounted } from 'vue'
 import { useAuthStore } from './stores/useAuthStore'
 import { useUserStore } from './stores/useUserStore'
 import { useMoviesStore } from './stores/useMoviesStore'
+import { useReviewsStore } from './stores/useReviewsStore'
 
 onMounted(async () => {
   const authStore = useAuthStore()
@@ -15,6 +16,9 @@ onMounted(async () => {
 
   const movieStore = useMoviesStore()
   await movieStore.fetchMovieList(movieStore.movieLists.trending)
+
+  const reviewStore = useReviewsStore()
+  await reviewStore.getTrendingReviews(movieStore.movieLists.trending.movies)
 })
 </script>
 
