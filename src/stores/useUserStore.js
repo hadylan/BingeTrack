@@ -49,15 +49,13 @@ export const useUserStore = defineStore('user', {
 
         return res.data
       } catch (error) {
-        console.error("Erreur lors de la récupération des films de l'utilisateur :", error)
+        console.error(`Erreur lors de la récupération des films la liste : ${listName}`, error)
         return []
       }
     },
 
     async isMoviesListValid(listName, cachedList) {
-      const cachedLastUpdate = cachedList.lastUpdate
-
-      if (getHoursDiffWithNow(cachedLastUpdate) >= 3) {
+      if (getHoursDiffWithNow(cachedList.lastUpdate) >= 3) {
         return false
       }
 
