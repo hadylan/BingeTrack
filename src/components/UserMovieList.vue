@@ -4,18 +4,18 @@ import MovieCard from '@/components/MovieCard.vue'
 import { useInfiniteScroll } from '@vueuse/core'
 
 const props = defineProps(['movies', 'listTitle'])
-const data = ref([])
+const loadedMovies = ref([])
 const el = useTemplateRef('el')
 
 const loadMoreMovies = () => {
-  const start = data.value.length
+  const start = loadedMovies.value.length
   const nextBatch = props.movies.slice(start, start + 20)
-  data.value.push(...nextBatch)
+  loadedMovies.value.push(...nextBatch)
 }
 
 useInfiniteScroll(el, loadMoreMovies, {
   distance: 20,
-  canLoadMore: () => data.value.length < props.movies.length,
+  canLoadMore: () => loadedMovies.value.length < props.movies.length,
 })
 </script>
 
@@ -27,7 +27,7 @@ useInfiniteScroll(el, loadMoreMovies, {
       ref="el"
     >
       <ul class="grid grid-cols-10 gap-3 my-1">
-        <MovieCard v-for="movie in data" :key="movie.id" :movie="movie" />
+        <MovieCard v-for="movie in loadedMovies" :key="movie.id" :movie="movie" />
       </ul>
     </div>
   </div>
@@ -40,19 +40,5 @@ useInfiniteScroll(el, loadMoreMovies, {
 
 .movies_list_container {
   max-height: 50vh;
-}
-
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #3e3e3e;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #929292;
-  border-radius: 5px;
 }
 </style>

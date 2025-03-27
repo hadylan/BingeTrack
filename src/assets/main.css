@@ -5,4 +5,18 @@
   max-width: 100%;
   padding: 1rem;
   font-weight: normal;
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #3e3e3e;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #929292;
+    border-radius: 5px;
+  }
 }
