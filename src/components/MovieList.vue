@@ -7,7 +7,7 @@ const props = defineProps(['movies', 'listTitle'])
 
 <template>
   <div class="movie_list rounded-xl px-5 pt-4 pb-5">
-    <h2>{{ props.listTitle }}</h2>
+    <h2 class="text-lg">{{ props.listTitle }}</h2>
     <ul class="grid grid-cols-10 gap-3 mt-4">
       <MovieCard v-for="movie in props.movies" :key="movie.id" :movie="movie" />
     </ul>
