@@ -84,7 +84,7 @@ export const useAuthStore = defineStore('auth', {
 
     logout() {
       this.sessionId = null
-      document.cookie = `session_id=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;`
+      document.cookie = 'session_id=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;'
 
       const userStore = useUserStore()
       userStore.user.session_id = null
