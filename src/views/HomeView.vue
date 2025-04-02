@@ -10,11 +10,7 @@ const trendingMovieList = computed(() => moviesStore.movieLists.trending)
 
 <template>
   <main>
-    <MovieList
-      :movies="trendingMovieList.movies"
-      :listTitle="trendingMovieList.title"
-      class="mb-5"
-    />
+    <MovieList :list="trendingMovieList" class="mb-5" />
     <TrendingReviews />
   </main>
 </template>
