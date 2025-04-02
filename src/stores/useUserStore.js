@@ -32,7 +32,7 @@ export const useUserStore = defineStore('user', {
       for (const listName of Object.keys(this.user.movieLists)) {
         const cachedList = JSON.parse(localStorage.getItem(listName))
 
-        if (!cachedList || !(await this.isMoviesListValid(listName, cachedList))) {
+        if (!cachedList || !(await this.isMovieListValid(listName, cachedList))) {
           this.fetchUserMovieList(listName)
         } else {
           this.user.movieLists[listName] = cachedList
