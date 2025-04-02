@@ -14,9 +14,9 @@ const { trendingReviews } = storeToRefs(reviewStore)
       <li
         v-for="review in trendingReviews.reviews"
         :key="review.id"
-        class="rounded-xl border-3 border-neutral-700"
+        class="rounded-lg border-3 border-neutral-700"
       >
-        <div class="review_wrapper p-5 rounded-xl">
+        <div class="review_wrapper p-5 rounded-lg">
           <div class="review_header flex mb-5">
             <div class="poster_wrapper">
               <img
@@ -62,8 +62,10 @@ const { trendingReviews } = storeToRefs(reviewStore)
               </div>
             </div>
           </div>
-          <div class="review_content h-100 overflow-scroll overflow-x-hidden mt-7">
-            <p class="pr-5 text-justify">{{ review.content }}</p>
+          <div class="review_content_wrapper p-5 rounded">
+            <div class="review_content h-100 overflow-scroll overflow-x-hidden">
+              <p class="pr-5 text-justify">{{ review.content }}</p>
+            </div>
           </div>
         </div>
       </li>
@@ -83,12 +85,16 @@ const { trendingReviews } = storeToRefs(reviewStore)
 .poster_wrapper {
   max-width: 150px;
   max-height: 225px;
-  border: 2px solid rgb(35, 35, 35);
+  border: 2px solid rgb(218, 218, 218);
 }
 
 .avatar_wrapper {
   width: 35px;
   height: 35px;
+}
+
+.review_content_wrapper {
+  background-color: #232323;
 }
 
 .review_content {
