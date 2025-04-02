@@ -26,10 +26,9 @@ const { user } = storeToRefs(userStore)
 
     <div class="movieLists">
       <UserMovieList
-        v-for="moviesList in user.movieLists"
-        :key="moviesList.id"
-        :movies="moviesList.movies"
-        :listTitle="moviesList.title"
+        v-for="movieList in user.movieLists"
+        :key="movieList.id"
+        :movieList="movieList"
         class="mb-5"
       />
     </div>
