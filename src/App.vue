@@ -12,7 +12,7 @@ onMounted(async () => {
   await authStore.checkUserSession()
 
   const userStore = useUserStore()
-  await userStore.retrieveMoviesLists()
+  await userStore.retrieveUserMovieLists()
 
   const movieStore = useMoviesStore()
   await movieStore.retrieveMovieLists()

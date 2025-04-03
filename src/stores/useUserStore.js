@@ -28,7 +28,7 @@ export const useUserStore = defineStore('user', {
   }),
 
   actions: {
-    async retrieveMoviesLists() {
+    async retrieveUserMovieLists() {
       for (const listName of Object.keys(this.user.movieLists)) {
         const cachedList = JSON.parse(localStorage.getItem(listName))
 
