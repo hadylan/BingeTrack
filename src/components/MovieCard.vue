@@ -1,9 +1,15 @@
 <script setup>
+import { useMovieModalStore } from '@/stores/useMovieModalStore'
+
 defineProps(['movie'])
+const movieModalStore = useMovieModalStore()
 </script>
 
 <template>
-  <li class="rounded-xl overflow-hidden border-3 border-neutral-700 cursor-pointer">
+  <li
+    class="rounded-xl overflow-hidden border-3 border-neutral-700 cursor-pointer"
+    @click="movieModalStore.openMovieModal(movie.id)"
+  >
     <div class="h-full flex justify-center items-center">
       <img
         v-if="movie.poster_path"
