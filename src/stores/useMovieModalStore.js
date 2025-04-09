@@ -16,7 +16,7 @@ export const useMovieModalStore = defineStore('movieModal', () => {
   async function openMovieModal(selectedMovieId) {
     movie.value = await movieStore.fetchMovieDetail(selectedMovieId)
     reviews.value = await reviewsStore.fetchMovieReviews(movie.value.id)
-    movie.value.isFavorite = userStore.user.movieLists.favorites.movies.some(
+    movie.value.isFavorite = userStore.user.movieLists.favorite.movies.some(
       (mov) => mov.id === selectedMovieId,
     )
     movie.value.isInWatchlist = userStore.user.movieLists.watchlist.movies.some(
