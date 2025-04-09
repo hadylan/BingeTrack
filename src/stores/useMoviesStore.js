@@ -68,7 +68,7 @@ export const useMoviesStore = defineStore('movies', {
     async fetchMovieList(listKey, page) {
       try {
         const res = await apiClient.get(`${this.movieLists[listKey].apiPath}`, {
-          params: { page: page },
+          params: { page: page, language: 'fr-FR' },
         })
 
         if (page === 1) {
@@ -84,6 +84,18 @@ export const useMoviesStore = defineStore('movies', {
         localStorage.setItem(listKey, JSON.stringify(this.movieLists[listKey]))
       } catch (error) {
         console.error(`Erreur lors de la récupération des films de la liste : ${listKey}`, error)
+      }
+    },
+
+    async fetchMovieDetail(movieId) {
+      try {
+        const res = await apiClient.get(`movie/${movieId}`, {
+          params: { language: 'fr-FR' },
+        })
+
+        return res.data
+      } catch (error) {
+        console.error(`Erreur lors de la récupération des détails du film : ${movieId}`, error)
       }
     },
   },
