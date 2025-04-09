@@ -43,5 +43,17 @@ export const useReviewsStore = defineStore('review', {
         this.trendingReviews = cachedTrendingReviews
       }
     },
+
+    async fetchMovieReviews(movieId) {
+      try {
+        const res = await apiClient.get(`movie/${movieId}/reviews`)
+        for (const review of res.data.results) {
+          review.content = stripHtml(review.content)
+        }
+        return res.data
+      } catch (error) {
+        console.error(`Erreur lors de la récupération des critiques du film : ${movieId}`, error)
+      }
+    },
   },
 })
