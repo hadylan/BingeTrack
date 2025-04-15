@@ -13,7 +13,7 @@ const movieModalStore = useMovieModalStore()
     <div class="h-full flex justify-center items-center">
       <img
         v-if="movie.poster_path"
-        :src="'https://image.tmdb.org/t/p/w500' + movie.poster_path"
+        :src="'https://image.tmdb.org/t/p/w200' + movie.poster_path"
         :alt="'Affiche du film ' + movie.title"
         class="h-full"
         :title="movie.title"
