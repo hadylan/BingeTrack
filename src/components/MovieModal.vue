@@ -27,7 +27,7 @@ const rating = ref(movieModalStore.movie.userRating / 2)
         <div id="movie_infos" class="flex justify-between p-2 rounded-lg">
           <div id="poster_wrapper" class="mr-5 w-1/3">
             <img
-              :src="'https://image.tmdb.org/t/p/w500' + movieModalStore.movie.poster_path"
+              :src="'https://image.tmdb.org/t/p/w200' + movieModalStore.movie.poster_path"
               alt=""
             />
           </div>
@@ -71,7 +71,7 @@ const rating = ref(movieModalStore.movie.userRating / 2)
             </svg>
           </button>
 
-          <button class="mb-0 cursor-pointer" @click="userStore.toggleMovieInFavorite()">
+          <button class="mb-0 cursor-pointer" @click="userStore.toggleMovieInFavorites()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -112,7 +112,7 @@ const rating = ref(movieModalStore.movie.userRating / 2)
                 class="rounded-full review_user_avatar mr-3"
                 :src="
                   review.author_details.avatar_path
-                    ? `https://image.tmdb.org/t/p/w500${review.author_details.avatar_path}`
+                    ? `https://image.tmdb.org/t/p/w200${review.author_details.avatar_path}`
                     : avatar
                 "
                 :title="review.author_details.username"
