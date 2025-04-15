@@ -5,19 +5,19 @@ import { defineStore } from 'pinia'
 export const useMoviesStore = defineStore('movies', {
   state: () => ({
     movieLists: {
-      trending: {
+      nowPlaying: {
         id: 0,
-        apiPath: 'trending/movie/week',
-        title: 'Tendance cette semaine',
+        apiPath: '/movie/now_playing',
+        title: 'Actuellement au cinéma',
         loadedPages: 0,
         totalPages: 0,
         firstPageFetchDate: null,
         movies: [],
       },
-      nowPlaying: {
+      trending: {
         id: 1,
-        apiPath: '/movie/now_playing',
-        title: 'Actuellement au cinéma',
+        apiPath: 'trending/movie/week',
+        title: 'Tendance cette semaine',
         loadedPages: 0,
         totalPages: 0,
         firstPageFetchDate: null,
@@ -96,6 +96,21 @@ export const useMoviesStore = defineStore('movies', {
         return res.data
       } catch (error) {
         console.error(`Erreur lors de la récupération des détails du film : ${movieId}`, error)
+      }
+    },
+
+    async searchMovieByName(search) {
+      try {
+        const res = await apiClient.get('search/movie', {
+          params: {
+            query: search,
+            language: 'fr-FR',
+          },
+        })
+
+        return res.data.results
+      } catch (error) {
+        console.error('Erreur lors de la recherche de film', error)
       }
     },
   },
