@@ -25,13 +25,13 @@ const rating = ref(movieModalStore.movie.userRating / 2)
       >
         <!-- Movie infos -->
         <div id="movie_infos" class="flex justify-between p-2 rounded-lg">
-          <div id="poster_wrapper" class="mr-5 w-1/3">
+          <div id="poster_wrapper" class="hidden md:block mr-5 w-1/3">
             <img
               :src="'https://image.tmdb.org/t/p/w200' + movieModalStore.movie.poster_path"
               alt=""
             />
           </div>
-          <div class="w-2/3">
+          <div class="md:w-2/3">
             <h3 class="text-3xl font-semibold mb-1">{{ movieModalStore.movie.title }}</h3>
             <p v-if="movieModalStore.movie.tagline">
               {{ movieModalStore.movie.tagline }}
@@ -45,7 +45,7 @@ const rating = ref(movieModalStore.movie.userRating / 2)
             </p>
 
             <p v-if="movieModalStore.movie.vote_average" class="font-semibold mb-7">
-              {{ (movieModalStore.movie.vote_average / 2).toFixed(1) }}/5
+              ⭐ {{ (movieModalStore.movie.vote_average / 2).toFixed(1) }}/5
             </p>
 
             <p>{{ movieModalStore.movie.overview }}</p>
@@ -53,7 +53,10 @@ const rating = ref(movieModalStore.movie.userRating / 2)
         </div>
 
         <!-- Modal action buttons -->
-        <div id="action_buttons" class="p-3 w-1/2 mt-5 flex justify-around items-center rounded-lg">
+        <div
+          id="action_buttons"
+          class="p-3 w-full md:w-1/2 mt-5 flex justify-around items-center rounded-lg"
+        >
           <button class="m-0 cursor-pointer" @click="userStore.toggleMovieInWatchlist()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
