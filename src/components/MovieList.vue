@@ -33,7 +33,7 @@ useInfiniteScroll(el, loadMoreMovies, {
       ref="el"
       class="movies_list_container overflow-scroll overflow-x-hidden pr-4 mt-4 rounded-xl"
     >
-      <ul class="grid grid-cols-10 gap-3 mt-4">
+      <ul class="grid-cols-3 grid md:grid-cols-7 lg:grid-cols-10 gap-3 mt-4">
         <MovieCard v-for="movie in loadedMovies" :key="movie.id" :movie="movie" />
       </ul>
     </div>
