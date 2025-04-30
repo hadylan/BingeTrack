@@ -10,26 +10,31 @@ const { trendingReviews } = storeToRefs(reviewStore)
 <template>
   <div class="review_list rounded-xl px-5 pt-4 pb-5">
     <h2 class="text-lg">Critiques de films en tendance</h2>
-    <ul v-if="trendingReviews.reviews.length > 2" class="grid grid-cols-3 gap-3 mt-4">
+    <ul
+      v-if="trendingReviews.reviews.length > 2"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 mt-4"
+    >
       <li
         v-for="review in trendingReviews.reviews"
         :key="review.id"
-        class="rounded-lg border-3 border-neutral-700"
+        class="h-[75vh] rounded-lg border-3 border-neutral-700"
       >
-        <div class="review_wrapper p-5 pb-0 rounded-lg h-full">
-          <div class="review_header flex mb-5 h-1/2">
-            <div class="poster_wrapper w-1/2">
+        <div class="h-full flex flex-col p-5 rounded-lg">
+          <!-- Header -->
+          <div class="review_header flex pb-7">
+            <!-- Poster -->
+            <div class="poster_wrapper hidden md:block w-2/3 md:w-1/3">
               <img
-                :src="'https://image.tmdb.org/t/p/w200' + review.movie_poster_path"
-                :alt="'Affiche du film : ' + review.movie_title"
-                :title="review.movie_title"
                 class="h-full w-full"
+                :src="'https://image.tmdb.org/t/p/w200' + review.movie_poster_path"
               />
             </div>
-            <div class="ml-7 w-1/2">
-              <h3 class="pb-8 text-lg font-medium">{{ review.movie_title }}</h3>
 
+            <!-- Info -->
+            <div class="md:ml-7 md:w-2/3">
+              <h3 class="text-lg font-bold pb-5">{{ review.movie_title }}</h3>
               <div>
+                <!-- Avatar -->
                 <div class="avatar_wrapper">
                   <img
                     class="h-full w-full rounded-full"
@@ -38,33 +43,20 @@ const { trendingReviews } = storeToRefs(reviewStore)
                         ? `https://image.tmdb.org/t/p/w200${review.author_details.avatar_path}`
                         : avatar
                     "
-                    :title="review.author_details.username"
-                    :alt="'Avatar de l\'utilisateur : ' + review.author_details.username"
                   />
                 </div>
                 <span class="block mt-1">{{ review.author_details.username }}</span>
-                <div v-if="review.author_details.rating" class="flex items-center">
-                  <svg
-                    class="w-4 h-4 text-yellow-300 me-1"
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="currentColor"
-                    viewBox="0 0 22 20"
-                  >
-                    <path
-                      d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z"
-                    />
-                  </svg>
-                  <span class="ms-2 text-sm font-bold text-gray-300 dark:text-white">
-                    {{ review.author_details.rating }}/10
-                  </span>
+                <div v-if="review.author_details.rating" class="flex items-center font-bold">
+                  ⭐ {{ (review.author_details.rating / 2).toFixed(1) }}/5
                 </div>
               </div>
             </div>
           </div>
-          <div class="review_content_wrapper p-5 rounded">
-            <div class="review_content h-100 overflow-scroll overflow-x-hidden">
-              <p class="pr-5 text-justify">{{ review.content }}</p>
+
+          <!-- 🧠 Le bloc qui prend le reste -->
+          <div class="review_content flex-1 overflow-hidden py-3 rounded">
+            <div class="h-full overflow-y-scroll overflow-hidden px-5">
+              <p class="text-justify">{{ review.content }}</p>
             </div>
           </div>
         </div>
@@ -151,11 +143,7 @@ const { trendingReviews } = storeToRefs(reviewStore)
   height: 35px;
 }
 
-.review_content_wrapper {
-  background-color: #232323;
-}
-
 .review_content {
-  max-height: 25vh;
+  background-color: #343434;
 }
 </style>
