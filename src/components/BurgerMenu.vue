@@ -42,15 +42,15 @@ const showBurgerMenu = ref(false)
         >
       </li>
       <li>
-        <RouterLink to="/profile" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
-      </li>
-      <li>
-        <RouterLink to="#" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
+        <RouterLink to="/movies" class="block py-2 border-b-1 border-gray-500">Films</RouterLink>
       </li>
       <li v-if="user.id === null">
         <span @click="uiStore.openAuthModal()" class="block py-2 border-b-1 border-gray-500"
           >S'identifier</span
         >
+      </li>
+      <li v-else>
+        <RouterLink to="/profile" class="block py-2 border-b-1 border-gray-500">Profil</RouterLink>
       </li>
     </ul>
   </div>
